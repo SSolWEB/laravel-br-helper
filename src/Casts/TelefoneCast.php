@@ -9,9 +9,13 @@ use SSolWEB\StringMorpher\StringMorpher as SM;
 class TelefoneCast implements CastsAttributes
 {
     /**
-     * Cast the given value.
+     * Transform the attribute from the underlying model values.
      *
-     * @param  array<string, mixed>  $attributes
+     * @param \Illuminate\Database\Eloquent\Model  $model Modelo.
+     * @param string $key Key.
+     * @param mixed $value Value to be casted.
+     * @param array<string, mixed> $attributes Atributes.
+     * @return mixed
      */
     public function get(Model $model, string $key, mixed $value, array $attributes): mixed
     {
@@ -20,9 +24,13 @@ class TelefoneCast implements CastsAttributes
     }
 
     /**
-     * Prepare the given value for storage.
+     * Transform the attribute to its underlying model values.
      *
-     * @param  array<string, mixed>  $attributes
+     * @param \Illuminate\Database\Eloquent\Model  $model Modelo.
+     * @param string $key Key.
+     * @param mixed $value Value to be casted.
+     * @param array<string, mixed> $attributes Atributes.
+     * @return mixed
      */
     public function set(Model $model, string $key, mixed $value, array $attributes): mixed
     {

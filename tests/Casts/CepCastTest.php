@@ -1,4 +1,5 @@
 <?php
+
 namespace SSolWEB\LaravelBrFormatter\Tests\Casts;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
@@ -11,7 +12,7 @@ class CepCastTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $capsule = new Capsule;
+        $capsule = new Capsule();
         $capsule->addConnection([
             'driver' => 'sqlite',
             'database' => ':memory:',
