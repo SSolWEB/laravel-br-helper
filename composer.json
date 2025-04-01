@@ -22,18 +22,18 @@
     "extra": {
         "laravel": {
             "providers": [
-                "SSolWEB\\LaravelBrFormatter\\LaravelBrFormatterServiceProvider"
+                "SSolWEB\\LaravelBrHelper\\LaravelBrHelperServiceProvider"
             ]
         }
     },
     "autoload": {
         "psr-4": {
-            "SSolWEB\\LaravelBrFormatter\\": "src"
+            "SSolWEB\\LaravelBrHelper\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SSolWEB\\LaravelBrFormatter\\Tests\\": "tests/"
+            "SSolWEB\\LaravelBrHelper\\Tests\\": "tests/"
         }
     },
     "require": {

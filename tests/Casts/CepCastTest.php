@@ -1,11 +1,11 @@
 <?php
 
-namespace SSolWEB\LaravelBrFormatter\Tests\Casts;
+namespace SSolWEB\LaravelBrHelper\Tests\Casts;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Database\Eloquent\Model;
 use PHPUnit\Framework\TestCase;
-use SSolWEB\LaravelBrFormatter\Casts\CepCast;
+use SSolWEB\LaravelBrHelper\Casts\CepCast;
 
 class CepCastTest extends TestCase
 {

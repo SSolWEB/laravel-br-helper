@@ -1,10 +1,10 @@
 <?php
 
-namespace SSolWEB\LaravelBrFormatter;
+namespace SSolWEB\LaravelBrHelper;
 
 use Illuminate\Support\ServiceProvider;
 
-class LaravelBrFormatterServiceProvider extends ServiceProvider
+class LaravelBrHelperServiceProvider extends ServiceProvider
 {
     /**
      * Boot.

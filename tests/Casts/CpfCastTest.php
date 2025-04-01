@@ -1,11 +1,11 @@
 <?php
 
-namespace SSolWEB\LaravelBrFormatter\Tests\Casts;
+namespace SSolWEB\LaravelBrHelper\Tests\Casts;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Database\Eloquent\Model;
 use PHPUnit\Framework\TestCase;
-use SSolWEB\LaravelBrFormatter\Casts\CpfCast;
+use SSolWEB\LaravelBrHelper\Casts\CpfCast;
 
 class CpfCastTest extends TestCase
 {

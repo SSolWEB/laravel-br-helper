@@ -1,11 +1,11 @@
 <?php
 
-namespace SSolWEB\LaravelBrFormatter\Tests\Casts;
+namespace SSolWEB\LaravelBrHelper\Tests\Casts;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Database\Eloquent\Model;
 use PHPUnit\Framework\TestCase;
-use SSolWEB\LaravelBrFormatter\Casts\TelefoneCast;
+use SSolWEB\LaravelBrHelper\Casts\TelefoneCast;
 
 class TelefoneCastTest extends TestCase
 {
