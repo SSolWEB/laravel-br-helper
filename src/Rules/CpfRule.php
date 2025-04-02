@@ -4,7 +4,11 @@ namespace SSolWEB\LaravelBrHelper\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
+use SSolWEB\StringMorpher\StringMorpher as SM;
 
+/**
+ * Brazilian CPF validation rule.
+ */
 class CpfRule implements ValidationRule
 {
     /**
@@ -31,7 +35,7 @@ class CpfRule implements ValidationRule
     private function isCpfValid(string|int $CPF)
     {
         // Extrai somente os números
-        $cpf = preg_replace('/[^0-9]/is', '', $CPF);
+        $cpf = SM::onlyNumbers($CPF)->getString();
         // Verifica se foi informado todos os digitos corretamente
         if (strlen($cpf) != 11) {
             return false;
