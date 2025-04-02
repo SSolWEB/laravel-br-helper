@@ -43,8 +43,8 @@
         "ssolweb/string-morpher": "^1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^11.5",
-        "squizlabs/php_codesniffer": "3.*"
+        "squizlabs/php_codesniffer": "3.*",
+        "orchestra/testbench": "^10.1"
     },
     "minimum-stability": "stable",
     "prefer-stable": true

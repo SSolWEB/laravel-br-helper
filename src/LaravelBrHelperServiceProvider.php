@@ -14,7 +14,7 @@ class LaravelBrHelperServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/laravel-br-helper.php', 'laravel-br-helper');
+        $this->mergeConfigFrom(__DIR__ . '/../config/laravel-br-helper.php', 'laravel-br-helper');
     }
 
     /**
@@ -26,7 +26,7 @@ class LaravelBrHelperServiceProvider extends ServiceProvider
     {
         // php artisan vendor:publish --tag=laravel-br-helper
         $paths = [
-            __DIR__.'/../config/laravel-br-helper.php' => config_path('laravel-br-helper.php'),
+            __DIR__ . '/../config/laravel-br-helper.php' => config_path('laravel-br-helper.php'),
         ];
         $this->publishes($paths, 'laravel-br-helper');
     }

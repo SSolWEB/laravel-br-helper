@@ -2,25 +2,12 @@
 
 namespace SSolWEB\LaravelBrHelper\Tests\Casts;
 
-use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Database\Eloquent\Model;
-use PHPUnit\Framework\TestCase;
+use Orchestra\Testbench\TestCase;
 use SSolWEB\LaravelBrHelper\Casts\CnpjCast;
 
 class CnpjCastTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $capsule = new Capsule();
-        $capsule->addConnection([
-            'driver' => 'sqlite',
-            'database' => ':memory:',
-        ]);
-        $capsule->setAsGlobal();
-        $capsule->bootEloquent();
-    }
-
     public function testCnpjCast()
     {
         $model = new class extends Model {
