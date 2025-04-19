@@ -5,7 +5,7 @@ namespace SSolWEB\LaravelBrHelper\Tests\Casts;
 use Illuminate\Database\Eloquent\Model;
 use Orchestra\Testbench\TestCase;
 use SSolWEB\LaravelBrHelper\Casts\CpfCast;
-use SSolWEB\LaravelBrHelper\Enums\DataType;
+use SSolWEB\LaravelBrHelper\Enums\DBType;
 
 class CpfCastTest extends TestCase
 {
@@ -68,7 +68,7 @@ class CpfCastTest extends TestCase
         $model = new class extends Model {
             protected function casts()
             {
-                return ['cpf' => CpfCast::saveAs(DataType::STRING)];
+                return ['cpf' => CpfCast::dbType(DBType::STRING)];
             }
         };
         $model->cpf = '123.456.789-09';
@@ -81,7 +81,7 @@ class CpfCastTest extends TestCase
         $model = new class extends Model {
             protected function casts()
             {
-                return ['cpf' => CpfCast::saveAs(DataType::INTEGER)];
+                return ['cpf' => CpfCast::dbType(DBType::INTEGER)];
             }
         };
         $model->cpf = '123.456.789-09';
@@ -98,7 +98,7 @@ class CpfCastTest extends TestCase
         $model = new class extends Model {
             protected function casts()
             {
-                return ['cpf' => CpfCast::saveAs(DataType::FORMATTED)];
+                return ['cpf' => CpfCast::dbType(DBType::FORMATTED)];
             }
         };
         $model->cpf = '12345678909';
