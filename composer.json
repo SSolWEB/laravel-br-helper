@@ -40,7 +40,7 @@
         "php": ">=8.0",
         "illuminate/database": "^10.0|^11.0|^12.0",
         "illuminate/support": "^10.0|^11.0|^12.0",
-        "ssolweb/string-morpher": "^1.0"
+        "ssolweb/laravel-br-helper": "^1.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "3.*",

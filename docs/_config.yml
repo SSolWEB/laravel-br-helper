@@ -1,0 +1,24 @@
+title: Laravel BR Helper
+author: Vinicius de Santana
+theme: just-the-docs
+url: "https://ssolweb.github.io"
+baseurl: "/laravel-br-helper" # the subpath of your site, e.g. /blog
+repository: ssolweb/laravel-br-helper/
+email: vinicius.vts@gmail.com
+description: A powerful library to manipulate brazilian data with laravel.
+permalink: pretty
+# color_scheme: dark
+# logo: /assets/logo.jpg
+favicon_ico: /assets/favicon.ico
+#footer
+gh_edit_link: true
+gh_edit_link_text: "Edit this page on GitHub."
+
+color_scheme: ssw_custom.scss
+
+defaults:
+  - scope:
+      path:
+      type: "pages"
+    values:
+      layout: "default"
