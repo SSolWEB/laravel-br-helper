@@ -1,0 +1,163 @@
+{"0": {
+    "doc": 404,
+    "title": "404",
+    "content": "Page not found :( . The requested page could not be found. ",
+    "url": "/laravel-br-helper/404#404",
+    
+    "relUrl": "/404#404"
+  },"1": {
+    "doc": 404,
+    "title": 404,
+    "content": " ",
+    "url": "/laravel-br-helper/404",
+    
+    "relUrl": "/404"
+  },"2": {
+    "doc": "Casters",
+    "title": "Data useful manipulation with laravel casters",
+    "content": "For all casters, when you the default option (e.g.CepCast::class) the DBType::STRING is used. | CepCast | CnpjCast | CpfCast | TelefoneCast | . ",
+    "url": "/laravel-br-helper/docs/how-to-use/casters/#data-useful-manipulation-with-laravel-casters",
+    
+    "relUrl": "/docs/how-to-use/casters/#data-useful-manipulation-with-laravel-casters"
+  },"3": {
+    "doc": "Casters",
+    "title": "CepCast",
+    "content": "Cast data to a Brazilian zip code format . use Illuminate\\Database\\Eloquent\\Model; use SSolWEB\\LaravelBrHelper\\Casts\\CepCast; class MyModel extends Model { protected function casts(): array { return ['cep' =&gt; CepCast::class]; } } . You can cast the values to the your database format: . use Illuminate\\Database\\Eloquent\\Model; use SSolWEB\\LaravelBrHelper\\Casts\\CepCast; use SSolWEB\\LaravelBrHelper\\Enums\\DBType; class MyModel extends Model { protected function casts(): array { return [ // in DB: '44555666', when using $model-&gt;cep1: '44.555-666' 'cep1' =&gt; CepCast::dbType(DBType::STRING), // in DB: 4555666, when using $model-&gt;cep2: '04.555-666' 'cep2' =&gt; CepCast::dbType(DBType::INTEGER), // in DB: '44.555-666', when using $model-&gt;cep3: '44.555-666' 'cep3' =&gt; CepCast::dbType(DBType::FORMATTED), ]; } } . ",
+    "url": "/laravel-br-helper/docs/how-to-use/casters/#cepcast",
+    
+    "relUrl": "/docs/how-to-use/casters/#cepcast"
+  },"4": {
+    "doc": "Casters",
+    "title": "CnpjCast",
+    "content": "Cast data to a Brazilian bussiness id format . use Illuminate\\Database\\Eloquent\\Model; use SSolWEB\\LaravelBrHelper\\Casts\\CnpjCast; class MyModel extends Model { protected function casts(): array { return ['cnpj' =&gt; CnpjCast::class]; } } . You can cast the values to the your database format: . use Illuminate\\Database\\Eloquent\\Model; use SSolWEB\\LaravelBrHelper\\Casts\\CnpjCast; use SSolWEB\\LaravelBrHelper\\Enums\\DBType; class MyModel extends Model { protected function casts(): array { return [ // in DB: '11222333000144', when using $model-&gt;cnpj1: '11.222.333/0001-44' 'cnpj1' =&gt; CnpjCast::dbType(DBType::STRING), // in DB: 1222333000144, when using $model-&gt;cnpj2: '01.222.333/0001-44' 'cnpj2' =&gt; CnpjCast::dbType(DBType::INTEGER), // in DB: '11.222.333/0001-44', when using $model-&gt;cnpj3: '11.222.333/0001-44' 'cnpj3' =&gt; CnpjCast::dbType(DBType::FORMATTED), ]; } } . ",
+    "url": "/laravel-br-helper/docs/how-to-use/casters/#cnpjcast",
+    
+    "relUrl": "/docs/how-to-use/casters/#cnpjcast"
+  },"5": {
+    "doc": "Casters",
+    "title": "CpfCast",
+    "content": "Cast data to a Brazilian person id format . use Illuminate\\Database\\Eloquent\\Model; use SSolWEB\\LaravelBrHelper\\Casts\\CpfCast; class MyModel extends Model { protected function casts(): array { return ['cpf' =&gt; CpfCast::class]; } } . You can cast the values to the your database format: . use Illuminate\\Database\\Eloquent\\Model; use SSolWEB\\LaravelBrHelper\\Casts\\CpfCast; use SSolWEB\\LaravelBrHelper\\Enums\\DBType; class MyModel extends Model { protected function casts(): array { return [ // in DB: '12345678909', when using $model-&gt;cpf1: '123.456.789-09' 'cpf1' =&gt; CpfCast::dbType(DBType::STRING), // in DB: 2345678909, when using $model-&gt;cpf2: '023.456.789-09' 'cpf2' =&gt; CpfCast::dbType(DBType::INTEGER), // in DB: '123.456.789-09', when using $model-&gt;cpf3: '123.456.789-09' 'cpf3' =&gt; CpfCast::dbType(DBType::FORMATTED), ]; } } . ",
+    "url": "/laravel-br-helper/docs/how-to-use/casters/#cpfcast",
+    
+    "relUrl": "/docs/how-to-use/casters/#cpfcast"
+  },"6": {
+    "doc": "Casters",
+    "title": "TelefoneCast",
+    "content": "Cast data to a Brazilian phone format . use Illuminate\\Database\\Eloquent\\Model; use SSolWEB\\LaravelBrHelper\\Casts\\TelefoneCast; class MyModel extends Model { protected function casts(): array { return ['telefone' =&gt; TelefoneCast::class]; } } . You can cast the values to the your database format: . use Illuminate\\Database\\Eloquent\\Model; use SSolWEB\\LaravelBrHelper\\Casts\\TelefoneCast; use SSolWEB\\LaravelBrHelper\\Enums\\DBType; class MyModel extends Model { protected function casts(): array { return [ // in DB: '11999994444', when using $model-&gt;telefone1: '(11) 99999-4444' 'telefone1' =&gt; TelefoneCast::dbType(DBType::STRING), // in DB: 11999994444, when using $model-&gt;telefone2: '(11) 99999-4444' 'telefone2' =&gt; TelefoneCast::dbType(DBType::INTEGER), // in DB: '(11) 99999-4444', when using $model-&gt;telefone3: '(11) 99999-4444' 'telefone3' =&gt; TelefoneCast::dbType(DBType::FORMATTED), ]; } } . ",
+    "url": "/laravel-br-helper/docs/how-to-use/casters/#telefonecast",
+    
+    "relUrl": "/docs/how-to-use/casters/#telefonecast"
+  },"7": {
+    "doc": "Casters",
+    "title": "Casters",
+    "content": " ",
+    "url": "/laravel-br-helper/docs/how-to-use/casters/",
+    
+    "relUrl": "/docs/how-to-use/casters/"
+  },"8": {
+    "doc": "Contributing",
+    "title": "Contributing",
+    "content": "Contributions are always welcome, but to keep things organized, keep in mind the following rules. ",
+    "url": "/laravel-br-helper/docs/contributing/",
+    
+    "relUrl": "/docs/contributing/"
+  },"9": {
+    "doc": "Contributing",
+    "title": "Bug Reports",
+    "content": "When reporting a bug in the package, make sure you follow the rules: . | You have read the Installation and General Configuration sections of the documentation; | The issue you’re facing is not documented; | A GitHub issue with the problem you’re having doesn’t already exist (in an open or closed state); | . Failure to do so, will result in a closed ticket. ",
+    "url": "/laravel-br-helper/docs/contributing/#bug-reports",
+    
+    "relUrl": "/docs/contributing/#bug-reports"
+  },"10": {
+    "doc": "Contributing",
+    "title": "Pull Requests",
+    "content": "Fixing a bug, correcting a typo or adding a new feature? . Just remember that all pull requests should be done against the main branch. Install, develop, test, contribute… . composer install # do some magic vendor/bin/phpcs vendor/bin/phpunit # commit # make a pull request . ",
+    "url": "/laravel-br-helper/docs/contributing/#pull-requests",
+    
+    "relUrl": "/docs/contributing/#pull-requests"
+  },"11": {
+    "doc": "Contributing",
+    "title": "Repository",
+    "content": "Visit the repository in github . ",
+    "url": "/laravel-br-helper/docs/contributing/#repository",
+    
+    "relUrl": "/docs/contributing/#repository"
+  },"12": {
+    "doc": "How to use",
+    "title": "How to use",
+    "content": "Documentation of methods . The Laravel Br Helper library is designed with a focus on simplicity and efficiency, allowing developers to work with Brazilian data in their Laravel projects with ease. ",
+    "url": "/laravel-br-helper/docs/how-to-use/",
+    
+    "relUrl": "/docs/how-to-use/"
+  },"13": {
+    "doc": "Introdução",
+    "title": "Laravel Br Helper",
+    "content": "Laravel Br Helper é uma biblioteca para auxiliar desenvolvedores a trabalhar com dados brasileiros de forma rápida e fácil. Com o pacote instalado você pode facilmente trabalhar com padrões brasileiros em seus projetos Laravel, como CPF, CNPJ, CEP e telefone. Comece com o tutorial de instalação, depois explore os métodos disponíveis na Documentação. ",
+    "url": "/laravel-br-helper/#laravel-br-helper",
+    
+    "relUrl": "/#laravel-br-helper"
+  },"14": {
+    "doc": "Introdução",
+    "title": "Introdução",
+    "content": " ",
+    "url": "/laravel-br-helper/",
+    
+    "relUrl": "/"
+  },"15": {
+    "doc": "Instalation",
+    "title": "Instalation",
+    "content": "How to instalation . ",
+    "url": "/laravel-br-helper/docs/installation/",
+    
+    "relUrl": "/docs/installation/"
+  },"16": {
+    "doc": "Instalation",
+    "title": "Check Composer",
+    "content": "To install the Laravel Br Helper package via Composer, follow these steps: . | Ensure you have Composer installed. If you don’t already have it, download and install Composer from getcomposer.org. | In your terminal, navigate to your project directory. | Run the following command to add the Laravel Br Helper package to your project: . | . composer require ssolweb/laravel-br-helper . This will download the library and automatically update your project’s composer.json file with the package details. ",
+    "url": "/laravel-br-helper/docs/installation/#check-composer",
+    
+    "relUrl": "/docs/installation/#check-composer"
+  },"17": {
+    "doc": "Instalation",
+    "title": "Use",
+    "content": "After installation, you can include the package in your code and start using its powerful features. The Laravel Br Helper library is designed with a focus on simplicity and efficiency, allowing developers to validade and cast brasilian data in a seamless and readable manner. Enjoy 😊 . Check how to use . ",
+    "url": "/laravel-br-helper/docs/installation/#use",
+    
+    "relUrl": "/docs/installation/#use"
+  },"18": {
+    "doc": "License",
+    "title": "The MIT License (MIT)",
+    "content": "Copyright (C) 2015-2023 Antério Vieira, Quetzy Garcia, Raphael França. Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: . The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. ",
+    "url": "/laravel-br-helper/docs/license/#the-mit-license-mit",
+    
+    "relUrl": "/docs/license/#the-mit-license-mit"
+  },"19": {
+    "doc": "License",
+    "title": "License",
+    "content": " ",
+    "url": "/laravel-br-helper/docs/license/",
+    
+    "relUrl": "/docs/license/"
+  },"20": {
+    "doc": "Rules",
+    "title": "Validate Brazilian Data With Laravel Rules",
+    "content": ". | CpfRule | . ",
+    "url": "/laravel-br-helper/docs/how-to-use/rules/#validate-brazilian-data-with-laravel-rules",
+    
+    "relUrl": "/docs/how-to-use/rules/#validate-brazilian-data-with-laravel-rules"
+  },"21": {
+    "doc": "Rules",
+    "title": "CpfRule",
+    "content": "Validate a CPF number . Use in Validator Facade: . use Illuminate\\Support\\Facades\\Validator; use SSolWEB\\LaravelBrHelper\\Rules\\CpfRule; $validator = Validator::make( ['cpf' =&gt; '529.982.247-25'], ['cpf' =&gt; ['required', new CpfRule()]] ); . Or in Form Requests: . use Illuminate\\Foundation\\Http\\FormRequest; use SSolWEB\\LaravelBrHelper\\Rules\\CpfRule; class UserRequest extends FormRequest { public function rules(): array { return [ 'cpf' =&gt; ['required', new CpfRule()], ]; } } . ",
+    "url": "/laravel-br-helper/docs/how-to-use/rules/#cpfrule",
+    
+    "relUrl": "/docs/how-to-use/rules/#cpfrule"
+  },"22": {
+    "doc": "Rules",
+    "title": "Rules",
+    "content": " ",
+    "url": "/laravel-br-helper/docs/how-to-use/rules/",
+    
+    "relUrl": "/docs/how-to-use/rules/"
+  }
+}
