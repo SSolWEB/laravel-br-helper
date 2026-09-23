@@ -1,0 +1,38 @@
+name: Deploy da Documentação para o GitHub Pages
+
+on:
+  workflow_call:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Reason for manual deployment'
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0'  # Adjust the Ruby version if needed
+
+    - name: Install dependencies
+      run: |
+        cd docs
+        gem install bundler
+        bundle install
+
+    - name: Build the site
+      run: |
+        cd docs
+        bundle exec jekyll build --destination ./build
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs/build

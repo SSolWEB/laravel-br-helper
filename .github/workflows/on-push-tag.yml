@@ -1,0 +1,10 @@
+name: Workflow de Nova Tag
+
+on:
+  push:
+    tags:
+      - 'v**'
+
+jobs:
+  call-docs-deploy:
+    uses: ./.github/workflows/docs-deploy.yml
