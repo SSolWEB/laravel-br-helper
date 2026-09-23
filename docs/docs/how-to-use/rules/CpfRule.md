@@ -1,7 +1,7 @@
 ---
 title: "CpfRule"
 parent: Rules
-nav_order: 1
+nav_order:
 ---
 
 ## CpfRule

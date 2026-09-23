@@ -1,7 +1,7 @@
 ---
 title: "CnpjCast"
 parent: Casters
-nav_order: 2
+nav_order:
 ---
 
 ## CnpjCast

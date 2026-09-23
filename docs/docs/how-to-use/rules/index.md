@@ -2,7 +2,7 @@
 title: Rules
 parent: "How to use"
 has_children: true
-nav_order: 3
+nav_order:
 ---
 
 # Validação (Rules)
