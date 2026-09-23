@@ -48,4 +48,46 @@ class CpfRuleTest extends TestCase
         $this->assertTrue($validator->fails());
         $this->assertEquals(config('laravel-br-helper.validation.cpf'), $validator->messages()->first('cpf'));
     }
+
+    public function testNullValue()
+    {
+        $validator = Validator::make(
+            ['cpf' => null],
+            ['cpf' => ['required', new CpfRule()]]
+        );
+        $this->assertTrue($validator->fails());
+    }
+
+    public function testEmptyString()
+    {
+        $validator = Validator::make(
+            ['cpf' => '   '],
+            ['cpf' => ['required', new CpfRule()]]
+        );
+        $this->assertTrue($validator->fails());
+    }
+
+    public function testInvalidTypes()
+    {
+        $validator = Validator::make(
+            ['cpf' => ['invalid_array']],
+            ['cpf' => ['required', new CpfRule()]]
+        );
+        $this->assertTrue($validator->fails());
+
+        $validator = Validator::make(
+            ['cpf' => true],
+            ['cpf' => ['required', new CpfRule()]]
+        );
+        $this->assertTrue($validator->fails());
+    }
+
+    public function testRandomStrings()
+    {
+        $validator = Validator::make(
+            ['cpf' => 'abcdefghijk'],
+            ['cpf' => ['required', new CpfRule()]]
+        );
+        $this->assertTrue($validator->fails());
+    }
 }

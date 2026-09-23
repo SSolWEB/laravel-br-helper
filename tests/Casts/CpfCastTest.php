@@ -115,4 +115,42 @@ class CpfCastTest extends TestCase
         $this->assertEquals(null, $model->getAttributes()['cpf']);
         $this->assertEquals(null, $model->cpf);
     }
+
+    public function testEmptyString()
+    {
+        $model = new class extends Model {
+            protected $casts = ['cpf' => CpfCast::class];
+        };
+        $model->cpf = '';
+        $this->assertEquals(null, $model->getAttributes()['cpf']);
+        $this->assertEquals(null, $model->cpf);
+    }
+
+    public function testInvalidTypes()
+    {
+        $model = new class extends Model {
+            protected $casts = ['cpf' => CpfCast::class];
+        };
+        $model->cpf = ['invalid_array'];
+        $this->assertEquals(null, $model->getAttributes()['cpf']);
+        $this->assertEquals(null, $model->cpf);
+
+        $model->cpf = true;
+        $this->assertEquals(null, $model->getAttributes()['cpf']);
+        $this->assertEquals(null, $model->cpf);
+    }
+
+    public function testInvalidLengthAndCharacters()
+    {
+        $model = new class extends Model {
+            protected $casts = ['cpf' => CpfCast::class];
+        };
+        $model->cpf = '1234';
+        $this->assertEquals('00000001234', $model->getAttributes()['cpf']);
+        $this->assertEquals('000.000.012-34', $model->cpf);
+
+        $model->cpf = '1234abcd';
+        $this->assertEquals('00000001234', $model->getAttributes()['cpf']);
+        $this->assertEquals('000.000.012-34', $model->cpf);
+    }
 }

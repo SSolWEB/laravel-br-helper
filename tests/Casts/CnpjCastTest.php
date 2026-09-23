@@ -123,4 +123,42 @@ class CnpjCastTest extends TestCase
         $this->assertEquals(null, $model->getAttributes()['cnpj']);
         $this->assertEquals(null, $model->cnpj);
     }
+
+    public function testEmptyString()
+    {
+        $model = new class extends Model {
+            protected $casts = ['cnpj' => CnpjCast::class];
+        };
+        $model->cnpj = '';
+        $this->assertEquals(null, $model->getAttributes()['cnpj']);
+        $this->assertEquals(null, $model->cnpj);
+    }
+
+    public function testInvalidTypes()
+    {
+        $model = new class extends Model {
+            protected $casts = ['cnpj' => CnpjCast::class];
+        };
+        $model->cnpj = ['invalid_array'];
+        $this->assertEquals(null, $model->getAttributes()['cnpj']);
+        $this->assertEquals(null, $model->cnpj);
+
+        $model->cnpj = true;
+        $this->assertEquals(null, $model->getAttributes()['cnpj']);
+        $this->assertEquals(null, $model->cnpj);
+    }
+
+    public function testInvalidLengthAndCharacters()
+    {
+        $model = new class extends Model {
+            protected $casts = ['cnpj' => CnpjCast::class];
+        };
+        $model->cnpj = '1234';
+        $this->assertEquals('00000000001234', $model->getAttributes()['cnpj']);
+        $this->assertEquals('00.000.000/0012-34', $model->cnpj);
+
+        $model->cnpj = '1234abcd';
+        $this->assertEquals('00000000001234', $model->getAttributes()['cnpj']);
+        $this->assertEquals('00.000.000/0012-34', $model->cnpj);
+    }
 }

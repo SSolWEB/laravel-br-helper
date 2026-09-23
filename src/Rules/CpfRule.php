@@ -21,7 +21,12 @@ class CpfRule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (!$this->isCpfValid($value)) {
+        if (empty($value) || (!is_string($value) && !is_int($value))) {
+            $fail(config('laravel-br-helper.validation.cpf'));
+            return;
+        }
+
+        if (!$this->isCpfValid((string) $value)) {
             $fail(config('laravel-br-helper.validation.cpf'));
         }
     }
@@ -32,7 +37,7 @@ class CpfRule implements ValidationRule
      * @param string|integer $CPF Cpf to be validated.
      * @return boolean
      */
-    private function isCpfValid(string|int $CPF)
+    private function isCpfValid(string $CPF)
     {
         // Extrai somente os números
         $cpf = SM::onlyNumbers($CPF)->getString();

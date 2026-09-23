@@ -119,4 +119,42 @@ class CepCastTest extends TestCase
         $this->assertEquals(null, $model->getAttributes()['cep']);
         $this->assertEquals(null, $model->cep);
     }
+
+    public function testEmptyString()
+    {
+        $model = new class extends Model {
+            protected $casts = ['cep' => CepCast::class];
+        };
+        $model->cep = '';
+        $this->assertEquals(null, $model->getAttributes()['cep']);
+        $this->assertEquals(null, $model->cep);
+    }
+
+    public function testInvalidTypes()
+    {
+        $model = new class extends Model {
+            protected $casts = ['cep' => CepCast::class];
+        };
+        $model->cep = ['invalid_array'];
+        $this->assertEquals(null, $model->getAttributes()['cep']);
+        $this->assertEquals(null, $model->cep);
+
+        $model->cep = true;
+        $this->assertEquals(null, $model->getAttributes()['cep']);
+        $this->assertEquals(null, $model->cep);
+    }
+
+    public function testInvalidLengthAndCharacters()
+    {
+        $model = new class extends Model {
+            protected $casts = ['cep' => CepCast::class];
+        };
+        $model->cep = '1234';
+        $this->assertEquals('00001234', $model->getAttributes()['cep']);
+        $this->assertEquals('00.001-234', $model->cep);
+
+        $model->cep = '1234abcd';
+        $this->assertEquals('00001234', $model->getAttributes()['cep']);
+        $this->assertEquals('00.001-234', $model->cep);
+    }
 }
