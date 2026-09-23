@@ -42,6 +42,9 @@ class MyModel extends Model
 - **Sucesso:**
   - Valores limpos ou desformatados são convertidos na saída para o formato visual `XX.XXX.XXX/XXXX-XX`.
   - A conversão de volta para o banco obedecerá o `DBType` configurado.
-- **Falhas e Limitações:**
-  - Para `null` será retornado `null`.
-  - Entradas vazias ou que não atinjam a contagem esperada de 14 dígitos após a remoção da formatação retornarão falha de formatação e/ou manterão o valor original bruto, sem lançar exceções fatais indesejadas.
+- **Tratamento de Valores Especiais e Limitações:**
+  - Para `null` será retornado e salvo `null`.
+  - Entradas vazias ou com menos de 14 dígitos (após a extração de números) receberão preenchimento de zeros à esquerda (`padL`) para atingir 14 dígitos.
+    - Com `DBType::STRING`: O valor será salvo no banco como uma string de 14 dígitos preenchida com zeros à esquerda (ex: `'123'` vira `'00000000000123'`, vazio vira `'00000000000000'`). Excedentes acima de 14 dígitos são truncados.
+    - Com `DBType::INTEGER`: O valor será salvo como número inteiro. Ao recuperar os dados (`get`), os zeros à esquerda necessários para atingir 14 dígitos serão restaurados.
+    - Com `DBType::FORMATTED`: O valor será salvo já formatado com a máscara e preenchido com zeros (ex: `'123'` vira `'00.000.000/0001-23'`, vazio vira `'00.000.000/0000-00'`). Excedentes acima de 14 dígitos são truncados.

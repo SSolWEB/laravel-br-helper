@@ -40,7 +40,4 @@ class UserRequest extends FormRequest
 ```
 
 ### Resultados Esperados
-- **Sucesso:** A validação irá passar caso o CPF possua um formato válido e seus dígitos verificadores estejam matematicamente corretos.
-- **Falhas e Limitações:**
-  - Valores nulos ou não enviados devem ser validados antecipadamente em conjunto com outras regras de validação base como `required` ou `nullable`. A regra em si focará em falhar caso o CPF tenha dígitos verificadores incorretos.
-  - Caso receba strings vazias ou tamanhos que não se encaixam nas regras de um CPF, a validação retornará erro e uma mensagem apropriada do Laravel.
+- **Sucesso:** A validação irá passar caso o CPF possua exatamente 11 dígitos (após a remoção de qualquer máscara/formatação), não seja uma sequência de números repetidos (ex: `111.111.111-11`) e seus dígitos verificadores estejam matematicamente corretos.

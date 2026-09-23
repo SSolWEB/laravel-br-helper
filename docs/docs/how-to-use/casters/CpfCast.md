@@ -42,6 +42,8 @@ class MyModel extends Model
 - **Sucesso:**
   - Valores limpos na entrada serão exibidos e retornados na instância do Eloquent no formato `XXX.XXX.XXX-XX`.
   - A conversão de volta para o banco dependerá do `DBType` configurado.
-- **Falhas e Limitações:**
-  - Caso o valor seja `null`, o sistema retornará `null`.
-  - Entradas vazias ou não numéricas incompletas, que após limpas não atinjam 11 dígitos, não poderão ser perfeitamente formatadas. Nesses casos, a string ou o valor original sem alteração de formatação é preservado no fallback.
+- **Limitações:**
+  - Caso o valor seja `null`, o sistema retornará `null` sem modificações.
+  - Entradas vazias ou com menos de 11 dígitos (após a remoção de caracteres não numéricos) têm comportamentos distintos:
+    - Para `DBType::STRING` e `DBType::INTEGER`, o valor será preenchido com zeros à esquerda até atingir 11 dígitos antes da formatação..
+    - Para `DBType::FORMATTED`, a string numérica incompleta é preservada e retornada formatada.

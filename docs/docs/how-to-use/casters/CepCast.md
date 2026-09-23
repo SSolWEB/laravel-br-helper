@@ -9,9 +9,9 @@ O `CepCast` transforma dados de CEP (Código de Endereçamento Postal) brasileir
 
 ### Parâmetros e Opções
 Por padrão, caso não especificado (ex: `CepCast::class`), a opção `DBType::STRING` é utilizada. Você pode especificar o tipo que será armazenado no banco de dados utilizando os seguintes enums de `DBType`:
-- `DBType::STRING`: Armazena apenas os números no banco de dados, em formato de string.
-- `DBType::INTEGER`: Armazena apenas os números no banco de dados, em formato numérico (inteiro).
-- `DBType::FORMATTED`: Armazena a string já formatada com a pontuação no banco de dados.
+- `DBType::STRING`: Armazena os números no banco de dados, sempre em formato de string com exatamente 8 dígitos (preenchido com zeros à esquerda caso menor, e truncado caso maior).
+- `DBType::INTEGER`: Armazena os números no banco de dados em formato numérico (inteiro). Zeros à esquerda são naturalmente perdidos na gravação, mas recuperados na leitura.
+- `DBType::FORMATTED`: Extrai até 8 números e armazena a string já formatada com a pontuação no banco de dados.
 
 ### Exemplo de Uso
 
@@ -41,7 +41,7 @@ class MyModel extends Model
 ### Resultados Esperados
 - **Sucesso:**
   - Valores numéricos válidos serão convertidos e formatados na saída para o formato `XX.XXX-XXX`.
-  - A conversão de volta para o banco dependerá do `DBType` configurado (somente números como string, números como inteiro ou formatado).
-- **Falhas e Limitações:**
-  - Caso o valor informado seja `null`, o cast deverá retornar `null`.
-  - Se a entrada for vazia ou não estiver em um formato numérico válido de 8 dígitos após a limpeza, o comportamento de fallback é retornar a string original ou o valor nulo/limpo conforme a consistência dos dados, sem lançar exceções inesperadas.
+  - A conversão de volta para o banco dependerá do `DBType` configurado.
+- **Limitações:**
+  - Caso o valor informado seja `null`, o cast retornará `null`.
+  - Não há fallback para retornar a string original em caso de entrada inválida, vazia ou menor que 8 dígitos. A entrada será sempre higienizada (mantendo apenas números). Strings vazias ou inválidas resultarão em `'00000000'` (no caso de `DBType::STRING`), `0` (no caso de `DBType::INTEGER`), ou em uma string formatada equivalente a vazio ou parcialmente mascarada (no caso de `DBType::FORMATTED`). Entradas com mais de 8 dígitos numéricos serão truncadas (cortadas após o oitavo dígito).
