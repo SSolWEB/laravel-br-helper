@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📖 Documentação
+    url: https://ssolweb.github.io/laravel-br-helper
+    about: Leia a documentação completa para o laravel-br-helper

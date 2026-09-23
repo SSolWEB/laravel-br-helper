@@ -1,0 +1,42 @@
+name: 🐛 Relato de Bug
+description: Relate um bug para nos ajudar a melhorar a biblioteca
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por dedicar seu tempo para preencher este report de bug!
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrição
+      description: Uma descrição clara e concisa de qual é o bug.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Passos para Reproduzir
+      description: Passos para reproduzir o comportamento. Forneça um trecho mínimo de código, se possível.
+      value: |
+        ```php
+        use SSolWEB\LaravelBrHelper\Rules\CpfRule;
+        // ...
+        ```
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportamento Esperado
+      description: Uma descrição clara e concisa do que você esperava que acontecesse.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: Eu li a [documentação](https://ssolweb.github.io/laravel-br-helper) e o problema não está coberto lá.
+          required: true
