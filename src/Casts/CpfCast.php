@@ -23,14 +23,14 @@ class CpfCast implements CastsAttributes
      */
     public function get(Model $model, string $key, mixed $value, array $attributes): mixed
     {
-        if (is_null($value)) {
-            return $value;
+        if (empty($value) || (!is_string($value) && !is_int($value))) {
+            return null;
         }
         $smValue = match ($this->dbType) {
-            DBType::INTEGER => SM::onlyNumbers($value)->padL(11, '0'),
-            DBType::FORMATTED => SM::onlyNumbers($value),
+            DBType::INTEGER => SM::onlyNumbers((string) $value)->padL(11, '0'),
+            DBType::FORMATTED => SM::onlyNumbers((string) $value),
             // DBType::STRING is default
-            default => SM::make($value),
+            default => SM::make((string) $value),
         };
         return $smValue->maskBrCpf()->getString();
     }
@@ -46,14 +46,14 @@ class CpfCast implements CastsAttributes
      */
     public function set(Model $model, string $key, mixed $value, array $attributes): mixed
     {
-        if (is_null($value)) {
-            return $value;
+        if (empty($value) || (!is_string($value) && !is_int($value))) {
+            return null;
         }
         return match ($this->dbType) {
-            DBType::INTEGER => (int) SM::onlyNumbers($value)->getString(),
-            DBType::FORMATTED => SM::onlyNumbers($value)->maskBrCpf($value)->getString(),
+            DBType::INTEGER => (int) SM::onlyNumbers((string) $value)->getString(),
+            DBType::FORMATTED => SM::onlyNumbers((string) $value)->sub(0, 11)->padL(11, '0')->maskBrCpf()->getString(),
             // DBType::STRING is default
-            default => SM::onlyNumbers($value)->sub(0, 11)->padL(11, '0')->getString(),
+            default => SM::onlyNumbers((string) $value)->sub(0, 11)->padL(11, '0')->getString(),
         };
     }
 }

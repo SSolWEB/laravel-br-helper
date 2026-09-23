@@ -23,10 +23,10 @@ class TelefoneCast implements CastsAttributes
      */
     public function get(Model $model, string $key, mixed $value, array $attributes): mixed
     {
-        if (is_null($value)) {
-            return $value;
+        if (empty($value) || (!is_string($value) && !is_int($value))) {
+            return null;
         }
-        return SM::onlyNumbers($value)
+        return SM::onlyNumbers((string) $value)
             ->maskBrPhone()
             ->getString();
     }
@@ -42,14 +42,14 @@ class TelefoneCast implements CastsAttributes
      */
     public function set(Model $model, string $key, mixed $value, array $attributes): mixed
     {
-        if (is_null($value)) {
-            return $value;
+        if (empty($value) || (!is_string($value) && !is_int($value))) {
+            return null;
         }
         return match ($this->dbType) {
-            DBType::INTEGER => (int) SM::onlyNumbers($value)->getString(),
-            DBType::FORMATTED => SM::onlyNumbers($value)->sub(0, 11)->maskBrPhone()->getString(),
+            DBType::INTEGER => (int) SM::onlyNumbers((string) $value)->getString(),
+            DBType::FORMATTED => SM::onlyNumbers((string) $value)->sub(0, 11)->maskBrPhone()->getString(),
             // DBType::STRING is default
-            default => SM::onlyNumbers($value)->sub(0, 11)->getString(),
+            default => SM::onlyNumbers((string) $value)->sub(0, 11)->getString(),
         };
     }
 }

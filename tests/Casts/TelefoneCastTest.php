@@ -134,4 +134,43 @@ class TelefoneCastTest extends TestCase
         $this->assertEquals(null, $model->getAttributes()['telefone']);
         $this->assertEquals(null, $model->telefone);
     }
+
+    public function testEmptyString()
+    {
+        $model = new class extends Model {
+            protected $casts = ['telefone' => TelefoneCast::class];
+        };
+        $model->telefone = '';
+        $this->assertEquals(null, $model->getAttributes()['telefone']);
+        $this->assertEquals(null, $model->telefone);
+    }
+
+    public function testInvalidTypes()
+    {
+        $model = new class extends Model {
+            protected $casts = ['telefone' => TelefoneCast::class];
+        };
+        $model->telefone = ['invalid_array'];
+        $this->assertEquals(null, $model->getAttributes()['telefone']);
+        $this->assertEquals(null, $model->telefone);
+
+        $model->telefone = true;
+        $this->assertEquals(null, $model->getAttributes()['telefone']);
+        $this->assertEquals(null, $model->telefone);
+    }
+
+    public function testInvalidLengthAndCharacters()
+    {
+        $model = new class extends Model {
+            protected $casts = ['telefone' => TelefoneCast::class];
+        };
+        $model->telefone = '1234';
+        $this->assertEquals('1234', $model->getAttributes()['telefone']);
+        // StringMorpher might not format 4 chars as phone, so it returns the numbers
+        $this->assertEquals('1234', $model->telefone);
+
+        $model->telefone = '1234abcd';
+        $this->assertEquals('1234', $model->getAttributes()['telefone']);
+        $this->assertEquals('1234', $model->telefone);
+    }
 }

@@ -41,3 +41,4 @@ class UserRequest extends FormRequest
 
 ### Resultados Esperados
 - **Sucesso:** A validação irá passar caso o CPF possua exatamente 11 dígitos (após a remoção de qualquer máscara/formatação), não seja uma sequência de números repetidos (ex: `111.111.111-11`) e seus dígitos verificadores estejam matematicamente corretos.
+- **Valores Vazios ou Tipos Inválidos:** Caso o valor informado seja vazio (`""`), `null`, ou de um tipo não suportado (como `array` ou `boolean`), a regra falhará a validação de forma segura.

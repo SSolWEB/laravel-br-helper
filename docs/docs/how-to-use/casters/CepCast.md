@@ -42,6 +42,7 @@ class MyModel extends Model
 - **Sucesso:**
   - Valores numéricos válidos serão convertidos e formatados na saída para o formato `XX.XXX-XXX`.
   - A conversão de volta para o banco dependerá do `DBType` configurado.
-- **Limitações:**
-  - Caso o valor informado seja `null`, o cast retornará `null`.
-  - Não há fallback para retornar a string original em caso de entrada inválida, vazia ou menor que 8 dígitos. A entrada será sempre higienizada (mantendo apenas números). Strings vazias ou inválidas resultarão em `'00000000'` (no caso de `DBType::STRING`), `0` (no caso de `DBType::INTEGER`), ou em uma string formatada equivalente a vazio ou parcialmente mascarada (no caso de `DBType::FORMATTED`). Entradas com mais de 8 dígitos numéricos serão truncadas (cortadas após o oitavo dígito).
+- **Limitações e Tratamentos de Borda:**
+  - Caso o valor informado seja `null`, vazio (`""`) ou de um tipo inválido (como `array` ou `boolean`), o cast retornará e salvará `null`.
+  - Entradas menores que 8 dígitos numéricos receberão preenchimento de zeros à esquerda (`padL`) para atingir 8 dígitos antes de serem formatadas ou salvas.
+  - Entradas com mais de 8 dígitos numéricos serão truncadas (cortadas após o oitavo dígito).
