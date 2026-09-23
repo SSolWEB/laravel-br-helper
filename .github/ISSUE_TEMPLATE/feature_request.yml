@@ -1,0 +1,30 @@
+name: 🚀 Sugestão de Funcionalidade
+description: Sugira uma ideia para este projeto
+title: "[Funcionalidade]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado pelo seu interesse em melhorar o laravel-br-helper!
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrição da Funcionalidade
+      description: Uma descrição clara e concisa de qual é a funcionalidade desejada.
+    validations:
+      required: true
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Caso de Uso
+      description: Uma descrição clara e concisa de como esta funcionalidade seria utilizada.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: Eu verifiquei que esta funcionalidade ainda não está na [documentação](https://ssolweb.github.io/laravel-br-helper).
+          required: true

@@ -1,0 +1,22 @@
+name: 📖 Melhoria na Documentação
+description: Sugira melhorias ou relate problemas na documentação
+title: "[Docs]: "
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por ajudar a melhorar nossa documentação!
+  - type: textarea
+    id: issue
+    attributes:
+      label: Descreva o problema ou melhoria
+      description: O que está errado, faltando ou poderia ser melhorado na documentação?
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Localização na Documentação
+      description: Por favor, forneça o link para a página que precisa de atualização.
+      placeholder: https://ssolweb.github.io/laravel-br-helper/docs/how-to-use/...
