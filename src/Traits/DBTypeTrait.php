@@ -9,12 +9,27 @@ trait DBTypeTrait
     private DBType $dbType;
 
     /**
-     * Construct  a instance
-     * @param DBType|string $dbType Use an option to configure.
+     * Construct a instance
+     * @param DBType|string|null $dbType Use an option to configure.
      */
-    public function __construct(DBType|string $dbType = DBType::STRING)
+    public function __construct(DBType|string|null $dbType = null)
     {
-        $this->dbType = is_string($dbType) ? DBType::from($dbType) : $dbType;
+        $this->dbType = $this->parseDbType($dbType);
+    }
+
+    /**
+     * Parse DBType parameter.
+     * @param DBType|string|null $dbType Use an option to configure.
+     * @return DBType
+     */
+    private function parseDbType(DBType|string|null $dbType): DBType
+    {
+        if ($dbType === null) {
+            $configKey = strtolower(str_replace('Cast', '', class_basename(static::class)));
+            $dbType = config("laravel-br-helper.casts.{$configKey}") ?? DBType::STRING;
+        }
+
+        return is_string($dbType) ? DBType::from($dbType) : $dbType;
     }
 
     /**
