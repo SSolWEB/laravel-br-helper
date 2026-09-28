@@ -26,13 +26,7 @@ class CpfCast implements CastsAttributes
         if (empty($value) || (!is_string($value) && !is_int($value))) {
             return null;
         }
-        $smValue = match ($this->dbType) {
-            DBType::INTEGER => SM::onlyNumbers((string) $value)->padL(11, '0'),
-            DBType::FORMATTED => SM::onlyNumbers((string) $value),
-            // DBType::STRING is default
-            default => SM::make((string) $value),
-        };
-        return $smValue->maskBrCpf()->getString();
+        return SM::onlyNumbers((string) $value)->padL(11, '0')->maskBrCpf()->getString();
     }
 
     /**

@@ -26,16 +26,9 @@ class CnpjCast implements CastsAttributes
         if (empty($value) || (!is_string($value) && !is_int($value))) {
             return null;
         }
-
         $cleanValue = SM::replaceRegex((string) $value, '/[^A-Za-z0-9]/', '')->toUpper()->getString();
 
-        $smValue = match ($this->dbType) {
-            DBType::INTEGER => SM::onlyNumbers((string) $value)->padL(14, '0'),
-            // DBType::FORMATTED and DBType::STRING
-            default => SM::make($cleanValue)->padL(14, '0'),
-        };
-
-        return $smValue->maskBrCnpj()->getString();
+        return SM::make($cleanValue)->padL(14, '0')->maskBrCnpj()->getString();
     }
 
     /**
