@@ -158,7 +158,57 @@ class CnpjCastTest extends TestCase
         $this->assertEquals('00.000.000/0012-34', $model->cnpj);
 
         $model->cnpj = '1234abcd';
-        $this->assertEquals('00000000001234', $model->getAttributes()['cnpj']);
-        $this->assertEquals('00.000.000/0012-34', $model->cnpj);
+        $this->assertEquals('0000001234ABCD', $model->getAttributes()['cnpj']);
+        $this->assertEquals('00.000.012/34AB-CD', $model->cnpj);
+    }
+
+    public function testCnpjAlphanumericCastAsString()
+    {
+        $model = new class extends Model {
+            protected function casts()
+            {
+                return ['cnpj' => CnpjCast::dbType(DBType::STRING)];
+            }
+        };
+        $model->cnpj = '12.ABC.345/0001-00';
+        $this->assertEquals('12ABC345000100', $model->getAttributes()['cnpj']);
+        $this->assertEquals('12.ABC.345/0001-00', $model->cnpj);
+        
+        // teste de normalização
+        $model->cnpj = '12abc345000100';
+        $this->assertEquals('12ABC345000100', $model->getAttributes()['cnpj']);
+        $this->assertEquals('12.ABC.345/0001-00', $model->cnpj);
+    }
+
+    public function testCnpjAlphanumericCastAsFormatted()
+    {
+        $model = new class extends Model {
+            protected function casts()
+            {
+                return ['cnpj' => CnpjCast::dbType(DBType::FORMATTED)];
+            }
+        };
+        $model->cnpj = '12ABC345000100';
+        $this->assertEquals('12.ABC.345/0001-00', $model->getAttributes()['cnpj']);
+        $this->assertEquals('12.ABC.345/0001-00', $model->cnpj);
+        
+        // teste de normalização com caracteres minúsculos
+        $model->cnpj = '12abc345000100';
+        $this->assertEquals('12.ABC.345/0001-00', $model->getAttributes()['cnpj']);
+        $this->assertEquals('12.ABC.345/0001-00', $model->cnpj);
+    }
+
+    public function testCnpjAlphanumericCastAsIntegerThrowsException()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('CNPJ com formato alfanumérico não é suportado pelo DBType::INTEGER.');
+
+        $model = new class extends Model {
+            protected function casts()
+            {
+                return ['cnpj' => CnpjCast::dbType(DBType::INTEGER)];
+            }
+        };
+        $model->cnpj = '12.ABC.345/0001-00';
     }
 }

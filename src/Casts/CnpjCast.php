@@ -26,12 +26,15 @@ class CnpjCast implements CastsAttributes
         if (empty($value) || (!is_string($value) && !is_int($value))) {
             return null;
         }
+        
+        $cleanValue = SM::replaceRegex((string) $value, '/[^A-Za-z0-9]/', '')->toUpper()->getString();
+        
         $smValue = match ($this->dbType) {
             DBType::INTEGER => SM::onlyNumbers((string) $value)->padL(14, '0'),
-            DBType::FORMATTED => SM::onlyNumbers((string) $value),
-            // DBType::STRING is default
-            default => SM::make((string) $value),
+            // DBType::FORMATTED and DBType::STRING
+            default => SM::make($cleanValue)->padL(14, '0'),
         };
+        
         return $smValue->maskBrCnpj()->getString();
     }
 
@@ -49,11 +52,20 @@ class CnpjCast implements CastsAttributes
         if (empty($value) || (!is_string($value) && !is_int($value))) {
             return null;
         }
+        
+        $cleanValue = SM::replaceRegex((string) $value, '/[^A-Za-z0-9]/', '')->toUpper()->sub(0, 14)->padL(14, '0')->getString();
+        
+        if ($this->dbType === DBType::INTEGER) {
+            if (preg_match('/[A-Z]/', $cleanValue)) {
+                throw new \InvalidArgumentException('CNPJ com formato alfanumérico não é suportado pelo DBType::INTEGER.');
+            }
+            return (int) $cleanValue;
+        }
+
         return match ($this->dbType) {
-            DBType::INTEGER => (int) SM::onlyNumbers((string) $value)->getString(),
-            DBType::FORMATTED => SM::onlyNumbers((string) $value)->sub(0, 14)->padL(14, '0')->maskBrCnpj()->getString(),
+            DBType::FORMATTED => SM::make($cleanValue)->maskBrCnpj()->getString(),
             // DBType::STRING is default
-            default => SM::onlyNumbers((string) $value)->sub(0, 14)->padL(14, '0')->getString(),
+            default => $cleanValue,
         };
     }
 }
