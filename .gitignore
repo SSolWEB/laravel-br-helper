@@ -1,5 +1,5 @@
 composer.lock
-/.sdd/**
+/.agents/.sdd/**
 /.vscode
 /vendor
 /.phpunit.cache
