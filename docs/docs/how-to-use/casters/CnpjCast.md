@@ -8,10 +8,7 @@ nav_order:
 O `CnpjCast` transforma dados de CNPJ (Cadastro Nacional da Pessoa Jurídica), incluindo suporte ao novo formato alfanumérico.
 
 ### Parâmetros e Opções
-Por padrão, se não especificado (ex: `CnpjCast::class`), a opção `DBType::STRING` é utilizada. É possível definir o formato do dado salvo no banco através do Enum `DBType`:
-- `DBType::STRING`: **(default)**. Armazena apenas os caracteres alfanuméricos (letras em caixa alta e números) em formato string.
-- `DBType::FORMATTED`: Armazena o CNPJ formatado no banco de dados.
-- `DBType::INTEGER`: Armazena apenas números em formato inteiro. **Atenção:** Este tipo não suporta o formato alfanumérico de CNPJ (que contém letras). Se você tentar salvar um CNPJ com letras usando este tipo, uma `InvalidArgumentException` será lançada. Considere alterar o tipo da coluna no banco de dados para `VARCHAR` e utilizar `DBType::STRING`.
+Este Cast aceita a configuração do comportamento de armazenamento via `DBType`. Consulte a [página principal de Casters](/laravel-br-helper/docs/how-to-use/casters/) para entender como configurar o formato de armazenamento padrão globalmente via `config` ou localmente por atributo.
 
 ### Exemplo de Uso
 

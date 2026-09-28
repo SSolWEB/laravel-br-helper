@@ -8,10 +8,7 @@ nav_order:
 O `CepCast` transforma dados de CEP (Código de Endereçamento Postal) brasileiro.
 
 ### Parâmetros e Opções
-Por padrão, caso não especificado (ex: `CepCast::class`), a opção `DBType::STRING` é utilizada. Você pode especificar o tipo que será armazenado no banco de dados utilizando os seguintes enums de `DBType`:
-- `DBType::STRING`: Armazena os números no banco de dados, sempre em formato de string com exatamente 8 dígitos (preenchido com zeros à esquerda caso menor, e truncado caso maior).
-- `DBType::INTEGER`: Armazena os números no banco de dados em formato numérico (inteiro). Zeros à esquerda são naturalmente perdidos na gravação, mas recuperados na leitura.
-- `DBType::FORMATTED`: Extrai até 8 números e armazena a string já formatada com a pontuação no banco de dados.
+Este Cast aceita a configuração do comportamento de armazenamento via `DBType`. Consulte a [página principal de Casters](/laravel-br-helper/docs/how-to-use/casters/) para entender como configurar o formato de armazenamento padrão globalmente via `config` ou localmente por atributo.
 
 ### Exemplo de Uso
 

@@ -8,10 +8,7 @@ nav_order:
 O `CpfCast` transforma dados de CPF (Cadastro de Pessoas Físicas).
 
 ### Parâmetros e Opções
-Por padrão, caso não especificado (ex: `CpfCast::class`), a opção `DBType::STRING` é utilizada. Você pode especificar o tipo que será armazenado no banco de dados utilizando os enums de `DBType`:
-- `DBType::STRING`: Armazena os números no banco de dados, em formato de string.
-- `DBType::INTEGER`: Armazena os números no banco de dados, em formato numérico (inteiro).
-- `DBType::FORMATTED`: Armazena a string já formatada com a pontuação no banco de dados.
+Este Cast aceita a configuração do comportamento de armazenamento via `DBType`. Consulte a [página principal de Casters](/laravel-br-helper/docs/how-to-use/casters/) para entender como configurar o formato de armazenamento padrão globalmente via `config` ou localmente por atributo.
 
 ### Exemplo de Uso
 
