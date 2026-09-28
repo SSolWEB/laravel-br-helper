@@ -28,3 +28,9 @@ Crie um novo arquivo PHP dentro do diretório `src/Rules/`. O nome do arquivo de
 ### Passo 4: Atualizar a Documentação
 Toda nova Rule deve ser devidamente documentada.
 Siga as instruções de [Atualizar Documentação](../update-docs/SKILL.md) para registrar a nova regra na documentação oficial.
+
+### Passo 5: Verificar Padrões de Código (Linter)
+Antes de finalizar as alterações, execute o linter para garantir que o código segue os padrões do projeto:
+1. Execute `./vendor/bin/phpcs` para checar os erros.
+2. Execute `./vendor/bin/phpcbf` para corrigir automaticamente os erros de formatação.
+3. Corrija manualmente qualquer erro restante apontado pelo `phpcs`.

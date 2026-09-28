@@ -30,3 +30,9 @@ A classe deve implementar a interface `Illuminate\Contracts\Database\Eloquent\Ca
 ### Passo 5: Atualizar a Documentação
 Toda novo Cast deve ser devidamente documentado.
 Siga as instruções de [Atualizar Documentação](../update-docs/SKILL.md) para registrar o novo cast na documentação oficial.
+
+### Passo 6: Verificar Padrões de Código (Linter)
+Antes de finalizar as alterações, execute o linter para garantir que o código segue os padrões do projeto:
+1. Execute `./vendor/bin/phpcs` para checar os erros.
+2. Execute `./vendor/bin/phpcbf` para corrigir automaticamente os erros de formatação.
+3. Corrija manualmente qualquer erro restante apontado pelo `phpcs`.
