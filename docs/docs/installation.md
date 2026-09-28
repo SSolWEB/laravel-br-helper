@@ -22,16 +22,15 @@ composer require ssolweb/laravel-br-helper
 
 Isso fará o download da biblioteca e atualizará automaticamente o arquivo `composer.json` do seu projeto com os detalhes do pacote.
 
-## Publicando as Configurações (Opcional)
+## Publicando as Configurações e Idiomas (Opcional)
 
-A biblioteca possui um arquivo de configuração que pode ser customizado. Para publicar esse arquivo na pasta `config/` do seu projeto Laravel, execute o comando artisan abaixo:
+A biblioteca possui arquivos de configuração e de idiomas (i18n) que podem ser customizados. Para publicar esses arquivos no seu projeto Laravel, execute o comando artisan abaixo:
 
 ```bash
 php artisan vendor:publish --tag=laravel-br-helper
 ```
 
-Isso criará o arquivo `config/laravel-br-helper.php`, permitindo que você altere as configurações padrão do pacote.
-
+Isso criará o arquivo `config/laravel-br-helper.php` (permitindo configurar os tipos de dados padrão dos casts) e a pasta `lang/vendor/laravel-br-helper/` (para traduzir ou alterar mensagens de validação e erros).
 ## Uso
 Após a instalação, você pode incluir o pacote no seu código e começar a utilizar seus recursos.
 

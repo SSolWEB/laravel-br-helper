@@ -8,10 +8,7 @@ nav_order:
 O `TelefoneCast` transforma dados de telefones brasileiros, aplicando a formatação de máscaras de celular (9 dígitos) ou fixo (8 dígitos) com DDD.
 
 ### Parâmetros e Opções
-Por padrão, ao utilizar sem parâmetros extras (ex: `TelefoneCast::class`), a opção `DBType::STRING` é definida internamente. Modifique o armazenamento no banco de dados usando o enum `DBType`:
-- `DBType::STRING`: Armazena apenas os números do telefone como string.
-- `DBType::INTEGER`: Armazena apenas os números em formato numérico (inteiro).
-- `DBType::FORMATTED`: Armazena o telefone já formatado com a pontuação no banco de dados.
+Este Cast aceita a configuração do comportamento de armazenamento via `DBType`. Consulte a [página principal de Casters](/laravel-br-helper/docs/how-to-use/casters/) para entender como configurar o formato de armazenamento padrão globalmente via `config` ou localmente por atributo.
 
 ### Exemplo de Uso
 

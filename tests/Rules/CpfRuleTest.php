@@ -36,7 +36,7 @@ class CpfRuleTest extends TestCase
             ['cpf' => ['required', new CpfRule()]]
         );
         $this->assertTrue($validator->fails());
-        $this->assertEquals(config('laravel-br-helper.validation.cpf'), $validator->messages()->first('cpf'));
+        $this->assertEquals(__('laravel-br-helper::validation.cpf'), $validator->messages()->first('cpf'));
     }
 
     public function testInvalidUnmaskedCpf()
@@ -46,7 +46,7 @@ class CpfRuleTest extends TestCase
             ['cpf' => ['required', new CpfRule()]]
         );
         $this->assertTrue($validator->fails());
-        $this->assertEquals(config('laravel-br-helper.validation.cpf'), $validator->messages()->first('cpf'));
+        $this->assertEquals(__('laravel-br-helper::validation.cpf'), $validator->messages()->first('cpf'));
     }
 
     public function testNullValue()

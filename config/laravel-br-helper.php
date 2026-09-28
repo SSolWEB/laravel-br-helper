@@ -1,16 +1,21 @@
 <?php
 
-return [
+use SSolWEB\LaravelBrHelper\Enums\DBType;
 
+return [
     /*
     |--------------------------------------------------------------------------
-    | Message validations
+    | Default Cast Types
     |--------------------------------------------------------------------------
     |
-    | This array determines the messages that are used when validation fails.
+    | This option controls the default DBType for each cast.
+    | Valid options: DBType::STRING->value, DBType::INTEGER->value, DBType::FORMATTED->value
     |
     */
-    'validation' => [
-        'cpf' => 'O CPF informado é inválido.',
+    'casts' => [
+        'cpf' => DBType::STRING->value,
+        'cnpj' => DBType::STRING->value,
+        'cep' => DBType::STRING->value,
+        'telefone' => DBType::STRING->value,
     ],
 ];

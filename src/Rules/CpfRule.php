@@ -22,12 +22,12 @@ class CpfRule implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         if (empty($value) || (!is_string($value) && !is_int($value))) {
-            $fail(config('laravel-br-helper.validation.cpf'));
+            $fail(__('laravel-br-helper::validation.cpf'));
             return;
         }
 
         if (!$this->isCpfValid((string) $value)) {
-            $fail(config('laravel-br-helper.validation.cpf'));
+            $fail(__('laravel-br-helper::validation.cpf'));
         }
     }
 
