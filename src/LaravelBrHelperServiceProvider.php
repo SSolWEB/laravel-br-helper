@@ -24,9 +24,12 @@ class LaravelBrHelperServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->loadTranslationsFrom(__DIR__ . '/../lang', 'laravel-br-helper');
+
         // php artisan vendor:publish --tag=laravel-br-helper
         $paths = [
             __DIR__ . '/../config/laravel-br-helper.php' => config_path('laravel-br-helper.php'),
+            __DIR__ . '/../lang' => $this->app->langPath('vendor/laravel-br-helper'),
         ];
         $this->publishes($paths, 'laravel-br-helper');
     }

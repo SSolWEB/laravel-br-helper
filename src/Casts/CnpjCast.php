@@ -26,15 +26,15 @@ class CnpjCast implements CastsAttributes
         if (empty($value) || (!is_string($value) && !is_int($value))) {
             return null;
         }
-        
+
         $cleanValue = SM::replaceRegex((string) $value, '/[^A-Za-z0-9]/', '')->toUpper()->getString();
-        
+
         $smValue = match ($this->dbType) {
             DBType::INTEGER => SM::onlyNumbers((string) $value)->padL(14, '0'),
             // DBType::FORMATTED and DBType::STRING
             default => SM::make($cleanValue)->padL(14, '0'),
         };
-        
+
         return $smValue->maskBrCnpj()->getString();
     }
 
@@ -52,12 +52,16 @@ class CnpjCast implements CastsAttributes
         if (empty($value) || (!is_string($value) && !is_int($value))) {
             return null;
         }
-        
-        $cleanValue = SM::replaceRegex((string) $value, '/[^A-Za-z0-9]/', '')->toUpper()->sub(0, 14)->padL(14, '0')->getString();
-        
+
+        $cleanValue = SM::replaceRegex((string) $value, '/[^A-Za-z0-9]/', '')
+            ->toUpper()
+            ->sub(0, 14)
+            ->padL(14, '0')
+            ->getString();
+
         if ($this->dbType === DBType::INTEGER) {
             if (preg_match('/[A-Z]/', $cleanValue)) {
-                throw new \InvalidArgumentException('CNPJ com formato alfanumérico não é suportado pelo DBType::INTEGER.');
+                throw new \InvalidArgumentException(__('laravel-br-helper::exceptions.cnpj_alpha_in_dbtype_integer'));
             }
             return (int) $cleanValue;
         }

@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Orchestra\Testbench\TestCase;
 use SSolWEB\LaravelBrHelper\Casts\CnpjCast;
 use SSolWEB\LaravelBrHelper\Enums\DBType;
+use SSolWEB\LaravelBrHelper\Tests\Traits\GetPackageProvider;
 
 class CnpjCastTest extends TestCase
 {
+    use GetPackageProvider;
+
     public function testCnpjCast()
     {
         $model = new class extends Model {
@@ -173,7 +176,7 @@ class CnpjCastTest extends TestCase
         $model->cnpj = '12.ABC.345/0001-00';
         $this->assertEquals('12ABC345000100', $model->getAttributes()['cnpj']);
         $this->assertEquals('12.ABC.345/0001-00', $model->cnpj);
-        
+
         // teste de normalização
         $model->cnpj = '12abc345000100';
         $this->assertEquals('12ABC345000100', $model->getAttributes()['cnpj']);
@@ -191,7 +194,7 @@ class CnpjCastTest extends TestCase
         $model->cnpj = '12ABC345000100';
         $this->assertEquals('12.ABC.345/0001-00', $model->getAttributes()['cnpj']);
         $this->assertEquals('12.ABC.345/0001-00', $model->cnpj);
-        
+
         // teste de normalização com caracteres minúsculos
         $model->cnpj = '12abc345000100';
         $this->assertEquals('12.ABC.345/0001-00', $model->getAttributes()['cnpj']);
@@ -201,7 +204,7 @@ class CnpjCastTest extends TestCase
     public function testCnpjAlphanumericCastAsIntegerThrowsException()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('CNPJ com formato alfanumérico não é suportado pelo DBType::INTEGER.');
+        $this->expectExceptionMessage(__('laravel-br-helper::exceptions.cnpj_alpha_in_dbtype_integer'));
 
         $model = new class extends Model {
             protected function casts()

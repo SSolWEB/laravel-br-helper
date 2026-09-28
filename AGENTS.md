@@ -10,6 +10,7 @@ A biblioteca `laravel-br-helper` é um pacote para Laravel com o objetivo de for
 2. **Priorize a Estabilidade:** Assegure-se de manter a compatibilidade reversa sempre que possível e adote um design de código defensivo.
 3. **Siga os Padrões:** Leia e aplique rigorosamente as instruções detalhadas no `CONTRIBUTING.md`.
 4. **Idioma:** Todas as mensagens, documentações e comentários gerados ou atualizados devem ser escritos em Português (PT-BR).
+5. **Localização (Traduções):** Textos voltados para os usuários e mensagens de erro (exceções) devem ficar nos arquivos de idiomas próprios da biblioteca (ex: `lang/pt_BR/exceptions.php`, `lang/en/exceptions.php`, etc). Evite mensagens fixas (hardcoded) no código. Textos existentes devem ser movidos para os arquivos de tradução conforme a biblioteca for se desenvolvendo, e consumidos usando a sintaxe `__('laravel-br-helper::exceptions.chave_da_mensagem')`.
 
 ## Estrutura do Repositório (Contexto Espacial)
 O repositório é organizado da seguinte forma para as principais funcionalidades:
