@@ -21,6 +21,7 @@ O repositório é organizado da seguinte forma para as principais funcionalidade
 
 ## Sistema de Skills
 Para executar tarefas específicas no repositório, consulte os arquivos de "Skills" localizados em `.agents/skills/`. Eles contêm tutoriais passo a passo específicos:
+- Para realizar commits mantendo um histórico limpo e semântico, consulte `.agents/skills/create-commits/SKILL.md`.
 - Para criar uma nova validação (Rule), consulte `.agents/skills/add-rule/SKILL.md`.
 - Para criar um novo cast de Eloquent, consulte `.agents/skills/add-cast/SKILL.md`.
 - Para atualizar a documentação, consulte `.agents/skills/update-docs/SKILL.md`.
