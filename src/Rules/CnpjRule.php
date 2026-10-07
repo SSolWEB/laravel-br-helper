@@ -56,9 +56,10 @@ class CnpjRule implements ValidationRule
     /**
      * @param string $cnpj Cnpj to be validated.
      * @param array $positions Positions to be multiplied.
-     * @return int
+     * @return integer
      */
-    private function calcDv (string $cnpj, array $positions) {
+    private function calcDv(string $cnpj, array $positions)
+    {
         $sum = 0;
         $pos = 0;
         foreach ($positions as $weight) {
