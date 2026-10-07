@@ -24,3 +24,6 @@ Para executar tarefas específicas no repositório, consulte os arquivos de "Ski
 - Para criar uma nova validação (Rule), consulte `.agents/skills/add-rule/SKILL.md`.
 - Para criar um novo cast de Eloquent, consulte `.agents/skills/add-cast/SKILL.md`.
 - Para atualizar a documentação, consulte `.agents/skills/update-docs/SKILL.md`.
+
+## AGENTS OVERRIDE [IMPORTANTE]
+No início de cada sessão, verifique a existência de `AGENTS.local.md` na raiz deste repositório, se existir, leia-o. As instruções dele sobre acessar ferramentas externas, ambiente de execução, caminhos de diretório, confirmações do usuário, comandos de terminal, uso de MCPs e estilo de resposta **DEVEM sobrescrever** o comportamento padrão deste arquivo e das skills.
